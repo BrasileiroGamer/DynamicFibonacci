@@ -5,6 +5,8 @@ import javax.swing.JOptionPane;
 public class DynamicFibonacci
 {
 	private int computeFib;
+	private int computeCount;
+	private long computeValue;
 	private long computeTable[];
 	
 	public DynamicFibonacci()
@@ -27,7 +29,7 @@ public class DynamicFibonacci
 		}
 		catch (NumberFormatException e)
 		{
-			JOptionPane.showMessageDialog(null, "Formato de número inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Formato e/ou número inválido!", "Erro", JOptionPane.ERROR_MESSAGE);
 
 			System.exit(-1);
 		}
@@ -43,8 +45,10 @@ public class DynamicFibonacci
 		}
 	}
 	
-	private long Compute(int n)
+	public long Compute(int n)
 	{
+		computeCount++;
+
 		if (computeTable[n] == -1)
 		{
 			if (n <= 1)
@@ -57,11 +61,28 @@ public class DynamicFibonacci
 			}
 	    }
 
-		return computeTable[n];
+		return computeValue = computeTable[n];
 	}
 	
 	public void Display()
 	{
-		JOptionPane.showMessageDialog(null, String.format("Fibonacci de %d: %d", computeFib, Compute(computeFib)), "DynamicFibonacci", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog
+		(
+			null,
+			String.format
+			(
+				"Fib(%d): %d%sIterações: %d",
+				computeFib,
+				computeValue,
+				System.lineSeparator(),
+				computeCount
+			),
+			"Resultado", JOptionPane.INFORMATION_MESSAGE
+		);
+	}
+	
+	public int getComputeFib()
+	{
+		return computeFib;
 	}
 }

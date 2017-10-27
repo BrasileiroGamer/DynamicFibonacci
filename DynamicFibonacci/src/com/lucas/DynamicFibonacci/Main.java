@@ -1,5 +1,7 @@
 package com.lucas.DynamicFibonacci;
 
+import javax.swing.JOptionPane;
+
 public class Main
 {
 	public static void main(String[] args)
@@ -10,11 +12,15 @@ public class Main
 		
 		try
 		{
-			dynamicFibonacci.Display();
+			dynamicFibonacci.Compute(dynamicFibonacci.getComputeFib());
 		}
 		catch (StackOverflowError e)
 		{
-			System.out.println("Estourou!");
+			JOptionPane.showMessageDialog(null, "A memória da JVM estourou, tente números menores.", "Erro", JOptionPane.ERROR_MESSAGE);
+
+			System.exit(1);
 		}
+		
+		dynamicFibonacci.Display();
 	}
 }
